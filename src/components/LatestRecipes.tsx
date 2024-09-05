@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from 'axios' 
+import { Link } from "react-router-dom"
 
 type TabsTypes = 'Seafood' | 'Vegetarian' | 'Dessert' | 'Pasta'
 interface MealTypes {
@@ -40,10 +41,10 @@ const LatestRecipes = () => {
                 ))
             ) : (
                 meals.slice(0, 8).map((meal) => (
-                    <div key={meal.idMeal} className="space-y-2 border-slate-300 rounded-md"> 
+                    <Link to={`/recipe/${meal.idMeal}`} key={meal.idMeal} className="block space-y-2 border-slate-300 rounded-md hover:shadow-md transition-shadow duration-300"> 
                         <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full h-auto"/> 
-                        <h1 className="text-sm md:text-base">{meal.strMeal}</h1>
-                    </div>
+                        <h1 className="text-sm md:text-base p-2">{meal.strMeal}</h1>
+                    </Link>
                 ))
             )}
         </div>
