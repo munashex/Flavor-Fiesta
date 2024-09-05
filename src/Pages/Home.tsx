@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { FaArrowRight } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
+import LatestRecipes from '../components/LatestRecipes'; 
+import OtherRecipes from '../components/OtherRecipes';
 
 interface RecipeTypes {
     idMeal: string,
@@ -10,8 +14,8 @@ interface RecipeTypes {
 
 const SkeletonLoader = () => (
     <div className="container mx-auto px-4 py-8 animate-pulse">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white shadow-lg rounded-lg overflow-hidden">
-            <div className="w-full h-64 bg-gray-300 lg:h-full" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  rounded-lg overflow-hidden">
+            <div className="w-full h-64 md:h-80 lg:h-[500px] bg-gray-300" />
             <div className="p-6 flex flex-col justify-center">
                 <div className="h-8 w-40 bg-gray-300 mb-4" />
                 <div className="h-10 w-3/4 bg-gray-300 mb-4" />
@@ -52,24 +56,28 @@ const Home = () => {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white  overflow-hidden">
+        <div className="">
+            <Link to="/" className="grid border border-slate-300 rounded-lg lg:border-none grid-cols-1  lg:grid-cols-2 gap-8 bg-white  overflow-hidden">
                 <img 
-                    className="w-full h-64 object-cover lg:h-[80%]" 
+                    className="w-full h-64 md:h-80 object-cover lg:h-[80%]" 
                     src={recipe.strMealThumb} 
                     alt={recipe.strMeal}
                 /> 
 
-                <div className="flex flex-col justify-center items-center"> 
+                <div className="flex flex-col p-2 justify-center items-center"> 
                     <h2 className=" bg-black   text-white p-1 px-3  mb-4">Recipe Of The Day</h2>
-                    <h1 className="text-4xl font-bold mb-4">{recipe.strMeal}</h1>
+                    <h1 className="text-2xl md:text-4xl font-bold mb-4">{recipe.strMeal}</h1>
                     <p className="text-gray-700 leading-relaxed">
                         {recipe.strInstructions.length > 300 
                             ? `${recipe.strInstructions.substring(0, 300)}...` 
                             : recipe.strInstructions}
                     </p>
+                    <h1 className="mt-5 font-bold inline-flex items-center gap-2">View Recipe <FaArrowRight size={22}/></h1>
                 </div> 
-            </div> 
+            </Link> 
+
+            <LatestRecipes/>
+            <OtherRecipes/>
         </div>
     )
 }

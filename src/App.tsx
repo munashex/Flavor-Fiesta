@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
        <Navbar/>
-    <div className='mx-3 lg:mx-9'>
+    <div className='mx-3 my-8 lg:mx-9 lg:p-6'>
     <Routes>
       <Route path="/" element={<Home/>}/>  
       </Routes> 
