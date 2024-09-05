@@ -1,7 +1,6 @@
-import { useParams, Link} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
 
 interface RecipeTypes {
     idMeal: string;
@@ -10,6 +9,12 @@ interface RecipeTypes {
     strInstructions: string;
     strYoutube: string;
     strCategory: string;
+}
+
+interface MealTypes {
+    strMeal: string, 
+    strMealThumb: string, 
+    idMeal: string
 }
 
 const SkeletonLoader = () => (
@@ -35,23 +40,43 @@ const SkeletonLoader = () => (
 const Recipe = () => {
     const [loading, setLoading] = useState(true);
     const [recipe, setRecipe] = useState<RecipeTypes | null>(null);
+    const [meals, setMeals] = useState<MealTypes[]>([]);
     const { id } = useParams<{ id: string }>();
 
-    useEffect(() => {
-        const getRecipe = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-                setRecipe(response.data.meals[0]);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const getRecipe = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+            setRecipe(response.data.meals[0]);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        if (id) getRecipe();
-    }, [id]);
+    const getByCategory = async (name: string | undefined) => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`); 
+            const filterSameMeal = response.data.meals.filter((meal: MealTypes) => meal.idMeal !== recipe?.idMeal)
+            setMeals(filterSameMeal || []);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (id) {
+            getRecipe();
+        }
+        if (recipe?.strCategory) {
+            getByCategory(recipe.strCategory);
+        }
+        window.scrollTo(0, 0); // Scroll to top when `id` or `recipe` changes
+    }, [id, recipe?.strCategory]);
 
     if (loading) return <SkeletonLoader />;
     if (!recipe) return <div className="text-center mt-8 text-xl">Yo, we couldn't find that recipe!</div>;
@@ -59,14 +84,14 @@ const Recipe = () => {
     const videoId = recipe.strYoutube?.split('v=')[1];
 
     return (
-    <div>
-        {/* top nav */}
-      <div className="inline-flex items-center gap-2 text-sm">
-         <h1 className="text-gray-700">HOME / RECIPE / <Link className="font-semibold underline" to={`/category/${recipe.strCategory}`}>{recipe.strCategory.toLocaleUpperCase()}</Link> /</h1>
-         <h1 className="text-black font-bold">{recipe.strMeal.toLocaleUpperCase()}</h1> 
-      </div>
+        <div>
+            {/* top nav */}
+            <div className="inline-flex items-center gap-2 text-sm">
+                <h1 className="text-gray-700">HOME / RECIPE / <Link className="font-semibold underline" to={`/category/${recipe.strCategory}`}>{recipe.strCategory.toLocaleUpperCase()}</Link> /</h1>
+                <h1 className="text-black font-bold">{recipe.strMeal.toLocaleUpperCase()}</h1> 
+            </div>
 
-      <div  className="grid border my-11 border-slate-300 rounded-lg lg:border-none grid-cols-1  lg:grid-cols-2 gap-8 bg-white  overflow-hidden">
+            <div className="grid border my-11 border-slate-300 rounded-lg lg:border-none grid-cols-1 lg:grid-cols-2 gap-8 bg-white overflow-hidden">
                 <img 
                     className="w-full h-64 md:h-80 object-cover lg:h-[70%]" 
                     src={recipe.strMealThumb} 
@@ -81,15 +106,23 @@ const Recipe = () => {
                 </div> 
             </div> 
 
-
             <div className="flex flex-col my-16 lg:my-0 md:mx-16 lg:mx-44 justify-center gap-3 items-center">
-            <h1 className="text-2xl md:text-3xl font-semibold">Watch How It's Made</h1> 
-             <iframe className="h-[500px]  w-full" src={`https://youtube.com/embed/${videoId}?controls=1`}>
-
-             </iframe>
+                <h1 className="text-2xl md:text-3xl font-semibold">Watch How It's Made</h1> 
+                <iframe className="h-[500px] w-full" src={`https://youtube.com/embed/${videoId}?controls=1`} />
             </div>
 
-    </div>
+            <div className="lg:my-16 space-y-5">
+                <h1 className="text-2xl md:text-3xl font-semibold text-center">{meals?.length === 0 ? '': 'Related Recipes'}</h1>
+                <div className="grid grid-cols-2 my-9 gap-3 md:gap-5 md:grid-cols-4 lg:grid-cols-5">
+                    {meals.slice(0, 8).map((meal) => (
+                        <Link to={`/recipe/${meal.idMeal}`} key={meal.idMeal} className="block space-y-2 border-slate-300 rounded-md hover:shadow-md transition-shadow duration-300"> 
+                            <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full h-auto"/> 
+                            <h1 className="text-sm md:text-base p-2">{meal.strMeal}</h1>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </div>
     );
 };
 

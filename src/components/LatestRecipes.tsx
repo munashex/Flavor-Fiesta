@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react"
-import axios from 'axios' 
-import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
+import axios from 'axios'; 
+import { Link } from "react-router-dom";
 
-type TabsTypes = 'Seafood' | 'Vegetarian' | 'Dessert' | 'Pasta'
+type TabsTypes = 'Seafood' | 'Vegetarian' | 'Dessert' | 'Pasta';
 interface MealTypes {
     strMeal: string, 
     strMealThumb: string, 
@@ -10,25 +10,26 @@ interface MealTypes {
 }
 
 const LatestRecipes = () => {
-    const [tabs, setTabs] = useState<TabsTypes>('Seafood') 
-    const [meals, setMeals] = useState<MealTypes[]>([])
-    const [loading, setLoading] = useState(true)
+    const [tabs, setTabs] = useState<TabsTypes>('Seafood'); 
+    const [meals, setMeals] = useState<MealTypes[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const getByCategory = async (name: TabsTypes) => {
         try {
-            setLoading(true)
-            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`) 
-            setMeals(response.data.meals || [])
+            setLoading(true);
+            const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`); 
+            setMeals(response.data.meals || []);
         } catch (err) {
-            console.error(err)
+            console.error(err);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
-        getByCategory(tabs)
-    }, [tabs]) 
+        getByCategory(tabs);
+        window.scrollTo(0, 0); // Scroll to top when `tabs` changes
+    }, [tabs]);
 
     const renderMeals = () => (
         <div className="grid grid-cols-2 my-9 gap-3 md:gap-5 md:grid-cols-4 lg:grid-cols-5">
@@ -48,7 +49,7 @@ const LatestRecipes = () => {
                 ))
             )}
         </div>
-    )
+    );
 
     return (
         <div className="my-16 lg:my-0"> 
@@ -72,7 +73,7 @@ const LatestRecipes = () => {
             </div> 
             {renderMeals()}
         </div>
-    )
-}
+    );
+};
 
-export default LatestRecipes
+export default LatestRecipes;
