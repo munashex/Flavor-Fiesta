@@ -28,9 +28,9 @@ function Category() {
 useEffect(() => {
  if(id) getByCategory(id)
   window.scrollTo(0, 0);
-}, [])
+}, [id])
 
-if (!meals) return <div className="text-center mt-8 text-xl">Yo, we couldn't find that category!</div>;
+
 
   return (
     <div>
