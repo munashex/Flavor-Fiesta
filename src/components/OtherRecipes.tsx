@@ -60,7 +60,7 @@ const OtherRecipes = () => {
 
             {/* Vegetarian recipes */}
             <div className="mt-28 grid grid-cols-1 lg:grid-cols-2 gap-y-6 gap-x-7">
-                <div className="grid grid-cols-2 gap-3 lg:order-2">
+                <div className="grid grid-cols-2 gap-3 order-1 lg:order-2 ">
                     {vegetarianRecipes.slice(0, 2).map((recipe) => (
                         <div key={recipe.idMeal} className="space-y-2"> 
                             <img src={recipe.strMealThumb} alt={recipe.strMeal}/>  
