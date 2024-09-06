@@ -2,6 +2,7 @@ import Logo from '../images/Logo.png'
 import { CiSearch } from "react-icons/ci"
 import { FaBars } from "react-icons/fa"
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     // const [search, setSearch] = useState('')
@@ -12,8 +13,10 @@ const Navbar = () => {
     return (
         <div className="mx-3 lg:mx-9 my-3">
             {/* Navbar on sm and md screens */}
-            <div className="flex lg:hidden flex-row justify-between items-center">
-                <img src={Logo} className="w-52 md:w-64" alt="food fiesta" />
+            <div className="flex lg:hidden flex-row justify-between items-center"> 
+                <Link to="/">
+                <img src={Logo} className="w-52 md:w-64" alt="food fiesta" /> 
+                </Link>
                 <button onClick={handleOpenSearch}>
                     <CiSearch size={28} />
                 </button>
@@ -24,8 +27,9 @@ const Navbar = () => {
 
             {/* Navbar on lg screens */}
             <div className="hidden lg:flex flex-row items-center justify-around">
+                <Link to="/">
                 <img src={Logo} className="w-64" alt="food fiesta" />
-                
+                </Link>
                 <div className="relative">
                     <input 
                         type="text" 

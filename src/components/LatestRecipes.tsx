@@ -28,7 +28,6 @@ const LatestRecipes = () => {
 
     useEffect(() => {
         getByCategory(tabs);
-        window.scrollTo(0, 0); // Scroll to top when `tabs` changes
     }, [tabs]);
 
     const renderMeals = () => (

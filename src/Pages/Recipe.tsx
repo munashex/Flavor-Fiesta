@@ -59,8 +59,7 @@ const Recipe = () => {
         try {
             setLoading(true);
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`); 
-            const filterSameMeal = response.data.meals.filter((meal: MealTypes) => meal.idMeal !== recipe?.idMeal)
-            setMeals(filterSameMeal || []);
+            setMeals(response.data.meals || []);
         } catch (err) {
             console.error(err);
         } finally {
