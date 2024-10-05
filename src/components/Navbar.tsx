@@ -1,6 +1,5 @@
 import Logo from '../images/Logo.png'
 import { CiSearch } from "react-icons/ci"
-import { FaBars } from "react-icons/fa"
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import NavLinks from './NavLinks'
@@ -39,8 +38,8 @@ const Navbar = () => {
                 <button onClick={handleOpenSearch}>
                     <CiSearch size={28} />
                 </button>
-                <button onClick={handleOpenLinks}>
-                    <FaBars size={28} />
+                <button onClick={handleOpenLinks} className="font-unbounded border border-black py-1 px-2 rounded-full bg-black text-white">
+                  {openLinks ? <span className="animate-fade-right">Close</span> : <span className="animate-fade-left">Menu</span>}
                 </button>
             </div>
 
@@ -61,9 +60,8 @@ const Navbar = () => {
                     </button>
                 </form>
 
-                <button className="inline-flex items-center gap-1" onClick={handleOpenLinks}>
-                    <FaBars size={28} />
-                    <span className="text-lg">Menu</span>
+                <button className="bg-black text-white font-unbounded text-lg py-1 px-6 rounded-full" onClick={handleOpenLinks}>
+                {openLinks ? <span className="animate-fade-right">Close</span> : <span className="animate-fade-left">Menu</span>}
                 </button>
             </div>
 
@@ -84,7 +82,7 @@ const Navbar = () => {
                 )}
             </div>
 
-             {/* open or close navlinks with hamburger menu */}
+             {/* open or close navlinks menu */}
             {openLinks ?  <NavLinks onClick={handleOpenLinks}/> : null}
         </div>
     )

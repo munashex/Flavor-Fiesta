@@ -98,15 +98,15 @@ const Recipe = () => {
                 /> 
 
                 <div className="flex flex-col p-2"> 
-                    <h1 className="text-2xl font-bold mb-4">{recipe.strMeal.toUpperCase()}</h1>
+                    <h1 className="text-2xl font-bold mb-4 font-unbounded">{recipe.strMeal.toUpperCase()}</h1>
                     <p className="text-gray-700 leading-relaxed">
                        {recipe.strInstructions}
                     </p>
                 </div> 
             </div> 
 
-            <div className="flex flex-col my-16 lg:my-0 md:mx-16 lg:mx-44 justify-center gap-3 items-center">
-                <h1 className="text-2xl md:text-3xl font-semibold">Watch How It's Made</h1> 
+            <div className="flex flex-col my-11 lg:my-0 md:mx-16 lg:mx-44 justify-center gap-3 items-center">
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold font-unbounded">Watch How It's Made</h1> 
                 <iframe className="h-[500px] w-full" src={`https://youtube.com/embed/${videoId}?controls=1`} />
             </div>
 

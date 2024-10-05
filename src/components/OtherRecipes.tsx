@@ -51,8 +51,8 @@ const OtherRecipes = () => {
                 </div>
 
                 <div className="flex flex-col gap-y-4 items-center justify-center">
-                    <h1 className="bg-black text-white p-2 px-4">CHICKEN RECIPES</h1>
-                    <h1 className="text-2xl font-bold">All things chicken</h1> 
+                    <h1 className="bg-black text-white p-2 px-4 font-unbounded rounded-full">Chicken recipes</h1>
+                    <h1 className="text-2xl font-bold font-unbounded">All things chicken</h1> 
                     <h1 className="text-gray-600 lg:text-lg text-center">Explore top chicken recipes from around the globe to discover a variety of delicious dishes and new recipes to enhance your cooking repertoire. Find more chicken recipes and enjoy a world of flavors!</h1>
                     <Link to="/category/Chicken" className="font-bold inline-flex items-center gap-x-2 hover:underline">VIEW ALL RECIPES <span><FaArrowRight size={20}/></span></Link>
                 </div>
@@ -70,8 +70,8 @@ const OtherRecipes = () => {
                 </div>
 
                 <div className="flex flex-col gap-y-4 items-center justify-center">
-                    <h1 className="bg-black text-white p-2 px-4">Vegetarian</h1>
-                    <h1 className="text-2xl font-bold">Vegetarian recipes</h1> 
+                    <h1 className="bg-black text-white p-2 px-4 font-unbounded rounded-full">Vegetarian</h1>
+                    <h1 className="text-2xl font-bold font-unbounded">Vegetarian recipes</h1> 
                     <h1 className="text-gray-600 lg:text-lg text-center">Discover top vegetarian recipes from around the world to explore a range of delicious plant-based dishes and innovative ideas to enrich your culinary skills. Browse more vegetarian recipes and savor a world of flavors!</h1>
                     <Link to="/category/Vegetarian" className="font-bold inline-flex items-center gap-x-2 hover:underline">VIEW ALL RECIPES <span><FaArrowRight size={20}/></span></Link>
                 </div>

@@ -66,14 +66,14 @@ const Home = () => {
                 /> 
 
                 <div className="flex flex-col p-2 justify-center items-center"> 
-                    <h2 className="bg-black text-white p-1 px-3 mb-4">Recipe Of The Day</h2>
-                    <h1 className="text-2xl md:text-4xl font-bold mb-4">{recipe.strMeal}</h1>
+                    <h2 className="bg-black text-white p-1 px-3 mb-4 font-unbounded rounded-full">Recipe Of The Day</h2>
+                    <h1 className="text-2xl md:text-4xl font-bold mb-4 font-unbounded">{recipe.strMeal}</h1>
                     <p className="text-gray-700 leading-relaxed">
                         {recipe.strInstructions.length > 300 
                             ? `${recipe.strInstructions.substring(0, 300)}...` 
                             : recipe.strInstructions}
                     </p>
-                    <h1 className="mt-5 font-bold inline-flex items-center gap-2">View Recipe <FaArrowRight size={22}/></h1>
+                    <h1 className="mt-5 font-bold inline-flex items-center gap-2 font-unbounded">View Recipe <FaArrowRight size={22}/></h1>
                 </div> 
             </Link> 
 

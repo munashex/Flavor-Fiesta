@@ -54,7 +54,7 @@ const LatestRecipes = () => {
         <div className="my-16 lg:my-0"> 
             <div className="space-y-4">
                 <h1 className="text-center font-bold text-lg lg:text-xl">Latest Recipes</h1>
-                <h1 className="font-extrabold text-3xl text-center">New from our kitchen</h1>
+                <h1 className="font-extrabold text-2xl font-unbounded  md:text-3xl text-center">New from our kitchen</h1>
             </div>
 
             <div className="mt-6 md:max-w-md lg:max-w-lg mx-auto">
