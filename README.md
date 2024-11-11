@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# Flavor Fiesta
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Flavor Fiesta Screenshot](https://github.com/munashex/Flavor-Fiesta/blob/main/public/Screenshot%202024-11-11%2014.18.04.png)](https://flavor-fiesta-three.vercel.app/)
 
-Currently, two official plugins are available:
+**Flavor Fiesta** is a culinary platform that offers global recipes using the MealDB API. The platform allows users to explore a variety of recipes from different cuisines, providing detailed information about each dish, including ingredients and preparation steps.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- **Recipe Search:** Easily search for recipes from around the world.
+- **Cuisine Filter:** Filter recipes by different types of cuisines.
+- **Favorites:** Save your favorite recipes for quick access.
+- **MealDB Integration:** Access detailed recipe information through the MealDB API.
 
-## Expanding the ESLint configuration
+## Technologies Used
+- **Frontend:** TypeScript, React, Tailwind CSS
+- **API Integration:** MealDB API
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Live Demo
+Check out Flavor Fiesta [here](https://flavor-fiesta-three.vercel.app/).
 
-- Configure the top-level `parserOptions` property like this:
+## Source Code
+Explore the code on GitHub: [Flavor-Fiesta](https://github.com/munashex/Flavor-Fiesta).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Flavor Fiesta brings culinary inspiration to your fingertips by offering a diverse range of global recipes. With a user-friendly interface, it makes discovering new dishes easy and fun, encouraging users to explore and create in the kitchen.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
